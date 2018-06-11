@@ -1,22 +1,31 @@
 #pragma once
 #include <tinychain/tinychain.hpp>
+#include <tinychain/blockchain.hpp>
 
 namespace tinychain
 {
 
-class consensus
+class miner
 {
 public:
-    consensus() noexcept = default;
-    consensus(const consensus&) noexcept = default;
-    consensus(consensus&&) noexcept = default;
-    consensus& operator=(consensus&&) noexcept = default;
-    consensus& operator=(const consensus&) noexcept = default;
+    miner(blockchain& chain):chain_(chain) {};
+    miner(const miner&) = default;
+    miner(miner&&) = default;
+    miner& operator=(miner&&) = default;
+    miner& operator=(const miner&) = default;
 
-    void print(){ std::cout<<"class consensus"<<std::endl; }
+    void print(){ std::cout<<"class miner"<<std::endl; }
     void test();
 
+    void start();
+
 private:
+    blockchain& chain_;
 };
+
+
+bool validate_tx(const tx& new_tx) ;
+
+bool validate_block(const tx& new_block) ;
 
 }// tinychain
